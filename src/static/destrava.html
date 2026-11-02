@@ -375,15 +375,14 @@ details p{margin:8px 0 0;color:var(--ink-2);font-size:15px}
       <div class="wa"><svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="17" fill="#25d366"/><path d="M11 25l1.4-4.2A7.5 7.5 0 1 1 15.6 24z" fill="none" stroke="#fff" stroke-width="2"/></svg><span><b>Acompañamiento de un profesional por WhatsApp</b><span class="note">Resuelves dudas, ajustas los ejercicios a tu caso y no te quedas solo en el proceso.</span></span></div>
       <b style="display:block;margin-top:16px">+ 4 bonos incluidos</b>
       <div class="bon"><div>🗓 Desafío Destraba 7 Días (con checklist)</div><div>💻 Guía de Postura en el Home Office</div><div>🗺 Mapa de la Tensión: qué te dice cada zona</div><div>🌙 Rutina nocturna para dormir suelto</div></div>
-      <div class="price" id="priceBox"><span class="note" id="pLabel">Precio normal</span><b id="pVal">US$ 37</b><span class="note">Pago único · Acceso inmediato y de por vida</span></div>
+      <div class="price" id="priceBox" aria-live="polite" aria-atomic="true"><span class="note" id="pLabel">Precio normal</span><b id="pVal">US$ 37</b><span class="note">Pago único · Acceso inmediato y de por vida</span></div>
       <div class="coupon" id="coupon">
         <div class="cTop"><span class="cTag">CUPÓN</span><b>PRIMEROS50</b><span class="note" id="cExp"></span></div>
-        <p class="note" style="margin:6px 0 0">Para los primeros 50 alumnos, que además reciben el acompañamiento de un profesional por WhatsApp. Al aplicarlo tienes <b>5 minutos</b> para completar tu inscripción.</p>
-        <button class="btn" type="button" id="apply">Aplicar cupón PRIMEROS50</button>
+        <p class="note" style="margin:6px 0 0">Activa tu cupón para desbloquear el precio especial de acceso. Incluye la plataforma, los bonos y el acompañamiento indicado en esta oferta.</p>
+        <button class="btn" type="button" id="apply">ACTIVAR MI CUPÓN DE DESCUENTO</button>
       </div>
-      <div class="timer" id="timer" hidden><span>Tu cupón está reservado por</span><b id="tLeft">05:00</b></div>
-      <a class="btn coral" id="buy" href="#" target="_blank" rel="noopener" hidden>Ir al pago con mi cupón →</a>
-      <div class="warn" id="expired">Tu tiempo de 5 minutos terminó y el cupón ya no está disponible en este dispositivo.</div>
+      <a class="btn coral" id="buy" href="https://pay.hotmart.com/R108272304D?checkoutMode=10" target="_blank" rel="noopener" hidden>QUIERO MI ACCESO POR US$ 9,90 →</a>
+      <noscript><p class="note">Continúa al checkout para consultar tu oferta y completar la compra.</p><a class="btn coral" href="https://pay.hotmart.com/R108272304D?checkoutMode=10">Ir al pago seguro →</a></noscript>
       <div class="seal"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="25" fill="var(--teal)"/><text x="27" y="32" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="20" fill="#06302c">7</text><text x="27" y="43" text-anchor="middle" font-size="7" font-weight="700" fill="#06302c">DÍAS</text></svg><span><b>Garantía de 7 días.</b> Si no es para ti, pides el reembolso dentro de ese plazo.</span></div>
     </div>
 
@@ -404,7 +403,7 @@ details p{margin:8px 0 0;color:var(--ink-2);font-size:15px}
 <div class="sticky" id="sticky"><a class="btn coral" href="#oferta" id="stickyBtn">Aplicar mi cupón de descuento</a></div>
 
 <script>
-const CHECKOUT = 'https://pay.cakto.com.br/zyh5x7o_1260521';
+const CHECKOUT = 'https://pay.hotmart.com/R108272304D?checkoutMode=10';
 const EXIMG = [
  {n:'Gato-camello lento',o:'Movilizar toda la columna en cadena',t:'8 ciclos',img:'https://cdn.jsdelivr.net/gh/clayverson02-max/quizclayverson@f652efb663bfe8fea964371019be8774f35e70df/ofertas/destrava/site/img/ex_gato.jpg',p:['Inhala y deja bajar el abdomen mirando un poco al frente.','Exhala y redondea la espalda empujando el suelo.','Hazlo vértebra por vértebra.']},
  {n:'Puente con respiración',o:'Movilizar la columna y activar glúteos',t:'8 repeticiones',img:'https://cdn.jsdelivr.net/gh/clayverson02-max/quizclayverson@f652efb663bfe8fea964371019be8774f35e70df/ofertas/destrava/site/img/ex_puente.jpg',p:['Exhala y eleva la cadera vértebra por vértebra.','Inhala arriba.','Exhala y baja desde la espalda alta hasta la pelvis.']},
@@ -504,22 +503,23 @@ function miniEx(i){ // persona en el tapete, vista desde arriba, con flecha punt
 }
 
 function ckUrl(){ const q=location.search.slice(1); return q ? CHECKOUT+(CHECKOUT.includes('?')?'&':'?')+q : CHECKOUT; }
-const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const fb=(...a)=>{ try{ window.fbq && window.fbq(...a); }catch(e){} };
-// cupón válido hasta el fin del día de la primera visita
-let first=+LS.get('dt_first')||Date.now(); LS.set('dt_first',first);
-const end=new Date(first); end.setHours(23,59,59,0);
-$('cExp').textContent='Válido solo hoy, hasta las 23:59';
-const WIN=5*60*1000; let tick=null;
-function showApplied(at){
-  $('apply').hidden=true; $('pLabel').innerHTML='<s>Antes US$ 37</s> Con tu cupón'; const pv=$('pVal'); pv.textContent='US$ 9,90'; pv.classList.add('drop');
-  $('buy').href=ckUrl(); $('buy').hidden=false; $('timer').hidden=false; $('stickyBtn').textContent='Completar inscripción con cupón';
-  clearInterval(tick); const run=()=>{ const left=at+WIN-Date.now(); if(left<=0){ clearInterval(tick); expire(); return; } const m=Math.floor(left/60000), s=Math.floor(left%60000/1000); $('tLeft').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }; run(); tick=setInterval(run,1000); }
-function expire(){ $('buy').hidden=true; $('timer').hidden=true; $('apply').hidden=true; $('pLabel').textContent='Precio normal'; const pv=$('pVal'); pv.textContent='US$ 37'; pv.classList.remove('drop'); $('expired').classList.add('show'); $('stickyBtn').textContent='Ver la oferta'; }
-const applied=+LS.get('dt_cupon')||0;
-if(Date.now()>end.getTime()) expire();
-else if(applied){ if(Date.now()-applied<WIN) showApplied(applied); else expire(); }
-$('apply').addEventListener('click',()=>{ const at=Date.now(); LS.set('dt_cupon',at); fb('track','Lead',{content_name:'Cupon PRIMEROS50'}); showApplied(at); });
+// El cupón revela la oferta sin bloquear la compra por tiempo o visitas anteriores.
+function showApplied(){
+  $('apply').hidden=true;
+  $('pLabel').innerHTML='<s>Antes US$ 37</s> · Con tu cupón';
+  const pv=$('pVal'); pv.textContent='US$ 9,90'; pv.classList.add('drop');
+  $('cExp').textContent='Cupón activado · Ahorras US$ 27,10';
+  $('buy').href=ckUrl(); $('buy').hidden=false;
+  $('stickyBtn').textContent='Obtener mi acceso por US$ 9,90';
+}
+$('cExp').textContent='Desbloquea tu precio especial';
+$('apply').addEventListener('click',()=>{
+  showApplied();
+  fb('track','Lead',{content_name:'Cupon PRIMEROS50'});
+  $('buy').focus({preventScroll:true});
+  $('buy').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+});
 $('buy').addEventListener('click',()=>{ $('buy').href=ckUrl(); fb('track','InitiateCheckout',{value:9.9,currency:'USD',content_name:'Destraba tu Espalda en 7 Dias'}); });
 document.querySelectorAll('[data-next]').forEach((b,i)=>{ if(i===0) b.addEventListener('click',()=>fb('trackCustom','QuizStart')); });
 
