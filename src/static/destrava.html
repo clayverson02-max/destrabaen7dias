@@ -1,130 +1,85 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-419">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Guía visual de diagnóstico y mantenimiento de minisplit. Consulta fichas por síntoma y organiza tu revisión con un checklist de servicio.">
-<meta property="og:title" content="Guía Visual de Diagnóstico y Mantenimiento de Minisplit">
-<title>Guía Visual de Minisplit | Diagnóstico y Mantenimiento</title>
+<meta name="description" content="Biblioteca digital de refrigeración: material principal y recursos sobre aire acondicionado, electrodomésticos, multímetro, precios, clientes y checklist. Compara los dos planes.">
+<meta property="og:title" content="Biblioteca del Técnico en Refrigeración">
+<title>Biblioteca del Técnico en Refrigeración | Compara los planes</title>
 <style>
-:root{color-scheme:light;--ink:#0e2330;--muted:#415765;--dark:#09232f;--teal:#126547;--mint:#bafad2;--paper:#eff6f3;--line:#cedfd7;--white:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.55 "Instrument Sans",system-ui,sans-serif}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.12;letter-spacing:-.035em;text-wrap:balance}h1{font-size:clamp(2.3rem,5vw,4.55rem);max-width:15ch}h2{font-size:clamp(1.9rem,4vw,3rem)}h3{font-size:1.2rem}p{max-width:65ch}a{color:inherit}a:focus-visible,summary:focus-visible{outline:3px solid #dc8820;outline-offset:4px}.wrap{width:min(100% - 2rem,1120px);margin:auto}.dark{background:var(--dark);color:var(--white)}.bar{padding:1rem 0;border-bottom:1px solid #ffffff2b;font-weight:750}.hero{padding:clamp(2rem,6vw,5.5rem) 0}.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:clamp(2rem,7vw,6rem)}.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}.dark .eyebrow,.accent{color:var(--mint)}.lead{font-size:clamp(1rem,2vw,1.24rem);margin-top:1.1rem}.dark .lead{color:#d4e6ec}.button{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:.8rem 1.25rem;background:var(--mint);color:var(--dark);font-weight:800;border-radius:.7rem;text-decoration:none;margin-top:1.4rem}.button:hover{background:#d5ffe4}.button.secondary{background:var(--teal);color:var(--white)}.button.secondary:hover{background:#0c5038}
-.visual{margin:0;min-width:0;padding:1.15rem;background:linear-gradient(145deg,#2d6570,#132f3a 72%);border:1px solid #8bb9ba60;border-radius:1.5rem}.cover{max-width:360px;margin:0 auto -1.5rem;padding:1.25rem 1.3rem 2.55rem;background:#d9f9e5;color:var(--dark);border-radius:.6rem;box-shadow:0 8px 24px #061c2560}.cover strong{display:block;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1;text-wrap:balance;letter-spacing:-.055em}.unit{margin:.9rem 0 0;width:100%;height:3.1rem;border-radius:.75rem;background:linear-gradient(#fff,#e9f1ef 68%,#819b96 74%,#234a4a 81%,#213b40 87%,#fff 88%);border:1px solid #8eaca4;box-shadow:0 6px 12px #0c3b3a22}.phone{position:relative;width:min(250px,100%);margin:auto;padding:1.05rem;border:6px solid #0b1b24;border-radius:1.25rem;background:#fff;color:var(--ink);box-shadow:0 9px 24px #04141b70}.phone p{font-size:.89rem}.phone h3{margin:.25rem 0 .7rem}.phone .eyebrow{margin:0;color:var(--teal);font-size:.68rem}.phone ol{font-size:.87rem;margin:0;padding-left:1.1rem}.phone li+li{margin-top:.3rem}figcaption{margin-top:.85rem;text-align:center;font-size:.82rem;color:#d5e8eb}
-section{padding:clamp(2.4rem,6vw,5rem) 0}.intro,.faq{max-width:740px}.intro p,.section-lead{margin-top:.85rem;color:var(--muted)}.white{background:var(--white)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem}.card{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.2rem}.card p{color:var(--muted);margin-top:.45rem}.sample{margin-top:1.4rem;border-left:4px solid var(--teal);background:var(--paper);padding:1.15rem;border-radius:0 .8rem .8rem 0}.sample p{margin-top:.4rem}.offer{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}.offer-box{background:white;color:var(--ink);padding:1.4rem;border-radius:1rem}.offer-box ul{margin:.9rem 0;padding-left:1.2rem}.offer-box li+li{margin-top:.35rem}.status{font-size:.9rem;background:#eef6f2;border-radius:.5rem;padding:.65rem .85rem;color:var(--muted)}.price{font-weight:800;font-size:1.75rem}details{border-bottom:1px solid var(--line);padding:.9rem 0}details:first-of-type{margin-top:.9rem}summary{font-weight:750;cursor:pointer}details p{margin-top:.45rem;color:var(--muted)}footer{padding:1.2rem 0;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}[hidden]{display:none!important}
-@media(max-width:720px){.hero-grid,.offer,.grid{grid-template-columns:1fr}.hero .button,.offer-box .button{width:100%}.visual{max-width:470px;width:100%;margin:auto}.grid{gap:.65rem}.wrap{width:calc(100% - 2rem)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{color-scheme:light;--ink:#172b36;--muted:#435764;--green:#087443;--red:#b5232c;--blue:#eef7fc;--line:#d9e3e8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;color:var(--ink);background:#fff;font:17px/1.6 Arial,Helvetica,sans-serif}h1,h2,h3,p,figure{margin:0}h1,h2,h3{line-height:1.12;letter-spacing:-.035em;text-wrap:balance}h1{font-size:clamp(2.25rem,5.3vw,4.5rem);font-weight:900;max-width:900px;margin:auto}h2{font-size:clamp(1.9rem,4vw,3rem)}h3{font-size:1.3rem}a{color:inherit}a:focus-visible,summary:focus-visible{outline:3px solid #b56b00;outline-offset:5px}.wrap{width:min(1100px,calc(100% - 40px));margin:auto}.bar{background:var(--red);color:white;text-align:center;padding:12px 20px;font-size:15px;font-weight:700}.brand{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:14px;font-weight:800;gap:20px}.brand a{font-weight:600;text-decoration:none}.brand span{color:var(--green)}section{padding:76px 0}.hero{padding:35px 0 64px;text-align:center}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}.accent{color:var(--green)}.lead{max-width:730px;margin:22px auto 0;font-size:clamp(18px,2vw,21px);color:var(--muted)}.button{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:15px 27px;background:var(--green);color:white;border-radius:8px;font-weight:800;text-decoration:none;text-align:center;line-height:1.3;box-shadow:0 5px 0 #04512e}.button:hover{background:#055c35}.hero .button{margin-top:28px}.note{font-size:14px;color:var(--muted);margin-top:16px}.showcase{max-width:760px;margin:38px auto 0;padding:36px 30px 24px;background:var(--blue);border-radius:20px}.collection{display:flex;align-items:center;justify-content:center;gap:18px;min-height:270px}.book{position:relative;display:flex;flex-direction:column;justify-content:space-between;text-align:left;background:#123d50;color:white;padding:22px 18px 22px 25px;border-radius:3px 9px 9px 3px;box-shadow:7px 10px 0 #d3e0e5,12px 15px 24px #18374a15;border-left:7px solid #0b2936;aspect-ratio:3/4}.book span{font-size:10px;font-weight:700;letter-spacing:.1em}.book strong{display:block;font-size:clamp(20px,3vw,34px);line-height:1.08;letter-spacing:-.04em}.book small{font-size:8px;letter-spacing:.1em}.book-line{height:7px;background:#56d6a0;width:42px}.collection .book{width:30%;max-width:200px}.collection .main-book{width:38%;max-width:245px;background:#087443;border-color:#055431;z-index:1}.collection .main-book strong{font-size:clamp(23px,4vw,39px)}.collection .side{transform:rotate(-5deg)}.collection .side:last-child{transform:rotate(5deg)}figcaption{font-size:12px;color:var(--muted);margin-top:24px}.light{background:#f6f9f8}.blue{background:var(--blue)}.center{text-align:center}.section-lead{max-width:650px;margin:18px auto 0;color:var(--muted)}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}.benefits article{padding:25px;background:white;border:1px solid var(--line);border-radius:12px}.benefits b{color:var(--green);display:block;font-size:14px;margin-bottom:12px}.benefits p{color:var(--muted);margin-top:12px}.materials{display:grid;grid-template-columns:1fr 1fr;gap:38px 30px;margin-top:44px}.material{display:grid;grid-template-columns:125px 1fr;gap:25px;align-items:center}.material .book{padding:15px 10px 15px 14px}.material .book strong{font-size:21px}.material .book span{font-size:8px}.material .book small{font-size:6px}.material h3{margin-bottom:10px}.material p:not(.eyebrow){font-size:16px;color:var(--muted)}.material.principal{grid-column:1/-1;max-width:650px;margin:0 auto 12px}.principal .book{background:var(--green);border-color:#055431}.plans{display:grid;grid-template-columns:1fr 1.15fr;gap:24px;max-width:900px;margin:40px auto 0;align-items:start}.plan{border:1px solid var(--line);border-radius:16px;background:white;overflow:hidden}.plan-inner{padding:30px}.plan.featured{border:2px solid var(--green);box-shadow:0 12px 35px #08634212}.recommend{background:var(--green);color:white;text-align:center;padding:10px;font-weight:800;font-size:14px}.plan p{color:var(--muted);margin-top:14px}.plan ul{padding:0;list-style:none;margin:24px 0}.plan li{padding:10px 0;border-bottom:1px solid #eef1f2;font-size:16px}.plan li:before{content:"✓";font-weight:800;color:var(--green);margin-right:10px}.plan .button{width:100%}.plan .status{background:#f1f5f7;padding:12px;border-radius:6px;font-size:14px}.price{font-size:40px;font-weight:900;color:var(--ink)!important;line-height:1.2}.faq{max-width:750px;margin:auto}details{padding:20px 0;border-bottom:1px solid var(--line)}details:first-of-type{margin-top:25px}summary{font-weight:700;cursor:pointer;line-height:1.5}details p{margin-top:14px;color:var(--muted)}.closing{max-width:750px;margin:auto;text-align:center}.closing .button{margin-top:26px}footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}footer p+p{margin-top:12px}[hidden]{display:none!important}
+@media(max-width:700px){section{padding:48px 0}.wrap{width:calc(100% - 36px)}.hero{padding-top:20px}.brand{font-size:12px}.hero .button{width:100%}.showcase{padding:24px 14px 18px;margin-top:30px}.collection{gap:9px;min-height:180px}.collection .book{padding:13px 8px 13px 10px;border-left-width:4px;box-shadow:4px 5px 0 #d3e0e5}.collection .book strong{font-size:clamp(14px,4vw,23px)}.collection .main-book strong{font-size:clamp(18px,5vw,29px)}.collection .book span{font-size:7px}.collection .book small{font-size:5px}.benefits,.materials,.plans{grid-template-columns:1fr}.benefits{gap:12px}.material{grid-template-columns:100px 1fr;gap:20px}.material.principal{grid-column:auto;margin:0}.material .book strong{font-size:17px}.materials{gap:30px}.plan-inner{padding:24px}.plans{gap:25px}.bar{font-size:13px}.lead{font-size:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<header class="dark bar"><div class="wrap">Guía Visual de Minisplit</div></header>
+<div class="bar">LANZAMIENTO · BIBLIOTECA DEL TÉCNICO EN REFRIGERACIÓN <span id="top-price"></span></div>
+<header class="wrap brand"><div>REFRIGERACIÓN<span> · BIBLIOTECA DIGITAL</span></div><a href="#planes">Ver planes ↗</a></header>
 <main>
-<section class="hero dark" aria-labelledby="titulo">
-<div class="wrap hero-grid">
-<div>
-<p class="eyebrow">Diagnóstico y mantenimiento</p>
-<h1 id="titulo">¿El minisplit prende, pero <span class="accent">no enfría?</span></h1>
-<p class="lead">Ten a la mano una guía visual para saber qué revisar primero, ordenar tus observaciones y explicar el siguiente paso al cliente.</p>
-<a class="button" href="#plan">Ver la guía completa</a>
-</div>
-<figure class="visual">
-<div class="cover"><span class="eyebrow">Guía digital</span><strong>Diagnóstico y mantenimiento de minisplit</strong><div class="unit" aria-hidden="true"></div></div>
-<div class="phone"><p class="eyebrow">Ficha por síntoma</p><h3>Enciende, pero no enfría</h3><ol><li>Confirma el modo y el síntoma.</li><li>Observa si el flujo de aire cambió.</li><li>Registra qué encontraste.</li></ol></div>
-<figcaption>Vista ilustrativa de la guía y una ficha de consulta.</figcaption>
-</figure>
-</div>
-</section>
-
-<section>
-<div class="wrap intro">
-<h2>Cuando el cliente pregunta «¿qué tiene?», empieza por lo que puedes observar.</h2>
-<p>«No enfría» es lo que reporta el cliente. La guía te ayuda a convertir ese reporte en preguntas y verificaciones iniciales para ordenar la visita antes de hablar de una reparación.</p>
-</div>
-</section>
-
-<section class="white" id="muestra">
+<section class="hero">
 <div class="wrap">
-<p class="eyebrow">Muestra de una ficha</p>
-<h2>Del síntoma al siguiente paso</h2>
-<p class="section-lead">Así se organiza la consulta cuando el equipo enciende, pero el cuarto sigue caliente.</p>
-<div class="grid">
-<article class="card"><h3>Confirma el reporte</h3><p>Pregunta desde cuándo ocurre y si el aire perdió fuerza o cambió de temperatura.</p></article>
-<article class="card"><h3>Organiza lo observable</h3><p>Registra el modo seleccionado y lo que notas en el flujo de aire sin abrir el equipo.</p></article>
-<article class="card"><h3>Explica qué sigue</h3><p>Comunica qué pudiste verificar y qué requiere una revisión técnica adicional.</p></article>
-</div>
-<div class="sample"><h3>Otros síntomas de consulta</h3><p>Goteo, formación de hielo, ruido y poco flujo de aire.</p></div>
-</div>
-</section>
-
-<section>
-<div class="wrap">
-<h2>Lo que tienes a la mano durante el servicio</h2>
-<div class="grid">
-<article class="card"><h3>Fichas por síntoma</h3><p>Encuentra preguntas, verificaciones iniciales y el siguiente paso según lo que el cliente reporta.</p></article>
-<article class="card"><h3>Componentes y herramientas</h3><p>Consulta los nombres de las piezas y familiarízate con las herramientas que aparecen en un servicio.</p></article>
-<article class="card"><h3>Guía de mantenimiento</h3><p>Ubica las tareas habituales y lleva un registro de lo que se revisó en cada visita.</p></article>
-</div>
+<p class="eyebrow">Tu próximo paso en el oficio</p>
+<h1>Deja de estudiar con información suelta. <span class="accent">Reúne tu material de refrigeración en un solo lugar.</span></h1>
+<p class="lead">Refrigeración, aire acondicionado, electrodomésticos y multímetro, más recursos sobre precios, clientes y organización. Elige los 7 materiales del plan completo.</p>
+<figure class="showcase"><div class="collection">
+<div class="book side"><span>MATERIAL COMPLEMENTARIO</span><strong>Aire acondicionado</strong><div class="book-line"></div><small>BIBLIOTECA DIGITAL</small></div>
+<div class="book main-book"><span>MATERIAL PRINCIPAL</span><strong>Técnico en Refrigeración</strong><div class="book-line"></div><small>BIBLIOTECA DIGITAL</small></div>
+<div class="book side"><span>MATERIAL COMPLEMENTARIO</span><strong>Uso del multímetro</strong><div class="book-line"></div><small>BIBLIOTECA DIGITAL</small></div>
+</div><figcaption>Representación ilustrativa de las portadas. No son páginas interiores del material.</figcaption></figure>
+<a class="button" href="#planes">QUIERO VER EL PLAN COMPLETO →</a>
+<p class="note">Material digital en PDF · Consulta desde celular o computadora</p>
 </div>
 </section>
-
-<section class="white">
-<div class="wrap">
-<p class="eyebrow">Incluido en el plan completo</p>
-<h2>Tres recursos para atender mejor cada visita</h2>
-<div class="grid">
-<article class="card"><h3>Guion de atención</h3><p>Recoge el reporte del cliente antes de ir y explica lo observado al terminar.</p></article>
-<article class="card"><h3>Formato de cotización</h3><p>Presenta el alcance, los conceptos y las condiciones de tu propuesta.</p></article>
-<article class="card"><h3>Checklist de servicio</h3><p>Registra observaciones y pendientes para darle seguimiento a la visita.</p></article>
-</div>
-</div>
-</section>
-
-<section class="dark" id="plan">
-<div class="wrap offer">
-<div><p class="eyebrow">Plan completo</p><h2>Abre la ficha que necesitas antes de empezar la revisión</h2><p class="lead">Para técnicos que van empezando, auxiliares y personas que están aprendiendo el oficio.</p></div>
-<div class="offer-box">
-<h3>Guía Visual de Diagnóstico y Mantenimiento de Minisplit</h3>
-<ul><li>Fichas por síntoma</li><li>Referencia de componentes, herramientas y mantenimiento</li><li>Guion de atención, formato de cotización y checklist</li></ul>
-<p class="price" id="offer-price" hidden></p>
-<a class="button secondary" id="checkout-button" hidden>Quiero la guía completa</a>
-<p class="status" id="checkout-status">La compra aún no está disponible.</p>
-</div>
-</div>
-</section>
-
-<section class="white">
-<div class="wrap faq">
-<h2>Preguntas frecuentes</h2>
-<details><summary>¿Necesito experiencia previa?</summary><p>El material está pensado para quienes empiezan en el oficio o apoyan en servicios. Las fichas sirven como referencia para ordenar la observación y la comunicación con el cliente.</p></details>
-<details><summary>¿Puedo consultar la guía en mi celular?</summary><p>Sí. Es un material digital pensado para tener a la mano durante una visita o al repasar un síntoma.</p></details>
-<details><summary>¿Qué equipos cubre?</summary><p>La guía se enfoca en síntomas comunes de minisplits. Consulta la documentación del fabricante y recurre a un técnico calificado para trabajos eléctricos, con refrigerante o fuera de tu capacitación.</p></details>
-<a class="button secondary" href="#plan">Ver qué incluye el plan completo</a>
-</div>
-</section>
+<section class="light"><div class="wrap center"><p class="eyebrow">Una biblioteca con una visión más amplia</p><h2>El aire acondicionado es solo una parte.</h2><p class="section-lead">Amplía tus temas de estudio y reúne recursos para la parte técnica y la organización de tus servicios.</p>
+<div class="benefits">
+<article><b>01 · CONOCIMIENTO TÉCNICO</b><h3>Amplía lo que estudias</h3><p>Refrigeración, aire acondicionado, electrodomésticos y multímetro.</p></article>
+<article><b>02 · TU ACTIVIDAD</b><h3>Piensa también en tu negocio</h3><p>Materiales específicos sobre precios de servicios y primeros clientes.</p></article>
+<article><b>03 · ORGANIZACIÓN</b><h3>Ten tus recursos a la mano</h3><p>Reúne los materiales y el checklist del técnico para consultarlos cuando estudies.</p></article>
+</div></div></section>
+<section id="materiales"><div class="wrap"><div class="center"><p class="eyebrow">Esto incluye el plan completo</p><h2>7 materiales. Una biblioteca para avanzar.</h2><p class="section-lead">El material de refrigeración es el principal. Los otros seis amplían tu biblioteca.</p></div><div class="materials"><article class="material principal"><div class="book"><span>GUÍA DIGITAL · 01</span><strong>Refrigeración</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Material principal</p><h3>Refrigeración</h3><p>Tu base de estudio para ampliar tus conocimientos en refrigeración.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 02</span><strong>Aire acondicionado</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Incluido también en el básico</p><h3>Aire acondicionado</h3><p>Un material específico para estudiar aire acondicionado.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 03</span><strong>Electrodomésticos</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Material complementario</p><h3>Electrodomésticos</h3><p>Amplía tus temas de estudio con el material de electrodomésticos.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 04</span><strong>Uso del multímetro</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Material complementario</p><h3>Uso del multímetro</h3><p>Un recurso dedicado al estudio de esta herramienta.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 05</span><strong>Precios de servicios</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Guía de negocio</p><h3>Precios de servicios</h3><p>Organiza tu aprendizaje sobre cómo cobrar por tus servicios.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 06</span><strong>Tus primeros clientes</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Guía de negocio</p><h3>Tus primeros clientes</h3><p>Estudia cómo dar los primeros pasos para conseguir clientes.</p></div></article>
+<article class="material "><div class="book"><span>GUÍA DIGITAL · 07</span><strong>Checklist del técnico</strong><div class="book-line"></div><small>BIBLIOTECA DE REFRIGERACIÓN</small></div><div><p class="eyebrow">Recurso de apoyo</p><h3>Checklist del técnico</h3><p>Una lista de consulta para acompañar tu organización.</p></div></article></div></div></section>
+<section class="blue" id="planes"><div class="wrap"><div class="center"><p class="eyebrow">Elige tu punto de partida</p><h2>¿Solo aire acondicionado<br>o la biblioteca completa?</h2><p class="section-lead">Compara lo que incluye cada opción.</p></div>
+<div class="plans">
+<article class="plan"><div class="plan-inner"><p class="eyebrow">PLAN BÁSICO</p><h3>Aire acondicionado</h3><p>Para quienes buscan únicamente este material.</p><ul><li>Material de aire acondicionado en PDF</li><li>Consulta desde celular o computadora</li></ul><p class="note">No incluye los otros seis materiales.</p><p class="price" id="basic-price" hidden></p><a class="button" data-checkout="basic" hidden>QUIERO EL BÁSICO</a><p class="status" data-status="basic">Compra disponible próximamente.</p></div></article>
+<article class="plan featured"><div class="recommend">RECOMENDADO · LOS 7 MATERIALES</div><div class="plan-inner"><p class="eyebrow">PLAN COMPLETO</p><h3>Biblioteca del Técnico en Refrigeración</h3><p>La opción para estudiar más allá del aire acondicionado.</p><ul><li>Refrigeración</li><li>Aire acondicionado</li><li>Electrodomésticos</li><li>Uso del multímetro</li><li>Precios de servicios</li><li>Tus primeros clientes</li><li>Checklist del técnico</li></ul><p class="price" id="complete-price" hidden></p><a class="button" data-checkout="complete" hidden>QUIERO LA BIBLIOTECA COMPLETA →</a><p class="status" data-status="complete">Compra disponible próximamente.</p></div></article>
+</div></div></section>
+<section><div class="wrap faq"><h2>Antes de elegir tu plan</h2>
+<details><summary>¿Cuál es la diferencia entre los planes?</summary><p>El básico incluye únicamente el material de aire acondicionado. El completo reúne los siete materiales: refrigeración, aire acondicionado, electrodomésticos, multímetro, precios de servicios, primeros clientes y checklist del técnico.</p></details>
+<details><summary>¿Es un curso en video?</summary><p>Esta oferta corresponde a materiales digitales en PDF. No se anuncian clases en video como parte de estos planes.</p></details>
+<details><summary>¿Puedo leer los materiales en mi celular?</summary><p>Sí. Los archivos PDF se pueden abrir en un celular, una tablet o una computadora con un lector de PDF.</p></details>
+<details><summary>¿Los materiales sustituyen la capacitación práctica?</summary><p>No. Son recursos de estudio y consulta. Los trabajos eléctricos y con refrigerantes requieren capacitación adecuada y seguir las instrucciones del fabricante.</p></details>
+</div></section>
+<section class="light"><div class="wrap closing"><p class="eyebrow">Da el siguiente paso en tu aprendizaje</p><h2>Una biblioteca más completa empieza con una mejor elección.</h2><a class="button" href="#planes">COMPARAR LOS DOS PLANES →</a></div></section>
 </main>
-<footer><div class="wrap">Guía Visual de Diagnóstico y Mantenimiento de Minisplit</div></footer>
+<footer><div class="wrap"><strong>Biblioteca del Técnico en Refrigeración</strong><p>Material educativo digital. No implica una titulación oficial ni garantiza ingresos o resultados profesionales.</p></div></footer>
 <script>
-  // Fill in the confirmed commercial settings before publication.
-  const offer = { checkoutUrl: "", priceLabel: "", metaPixelId: "2149847235657959" };
-  const price = document.querySelector("#offer-price");
-  const checkout = document.querySelector("#checkout-button");
-
-  if (offer.priceLabel) {
-    price.textContent = offer.priceLabel;
-    price.hidden = false;
-  }
-
-  if (/^https:\/\//i.test(offer.checkoutUrl)) {
-    const destination = new URL(offer.checkoutUrl);
-    for (const [name, value] of new URLSearchParams(location.search)) {
-      if (/^utm_/.test(name) && !destination.searchParams.has(name)) {
-        destination.searchParams.set(name, value);
+// Commercial settings must be confirmed before enabling sales.
+// Keep prices in text, never in visual assets. No artificial scarcity.
+const offer = { basic: { checkoutUrl: "", priceLabel: "" }, complete: { checkoutUrl: "", priceLabel: "" }, metaPixelId: "2149847235657959" };
+for (const key of ["basic", "complete"]) {
+  const plan = offer[key];
+  const price = document.getElementById(key + "-price");
+  if (plan.priceLabel) { price.textContent = plan.priceLabel; price.hidden = false; }
+  if (/^https:\/\//i.test(plan.checkoutUrl)) {
+    try {
+      const destination = new URL(plan.checkoutUrl);
+      for (const [name, value] of new URLSearchParams(location.search)) {
+        if (/^utm_/.test(name) && !destination.searchParams.has(name)) destination.searchParams.set(name, value);
       }
-    }
-    checkout.href = destination.href;
-    checkout.hidden = false;
-    document.querySelector("#checkout-status").hidden = true;
+      const link = document.querySelector('[data-checkout="' + key + '"]');
+      link.href = destination.href; link.hidden = false;
+      document.querySelector('[data-status="' + key + '"]').hidden = true;
+    } catch {}
   }
-
+}
+if (offer.complete.priceLabel) document.getElementById("top-price").textContent = "· PLAN COMPLETO " + offer.complete.priceLabel;
   if (/^\d+$/.test(offer.metaPixelId)) {
     const pixel = window.fbq = function (...args) {
       if (pixel.callMethod) pixel.callMethod.apply(pixel, args);
@@ -141,8 +96,9 @@ section{padding:clamp(2.4rem,6vw,5rem) 0}.intro,.faq{max-width:740px}.intro p,.s
     document.head.append(script);
     pixel("init", offer.metaPixelId);
     pixel("track", "PageView");
-    checkout.addEventListener("click", () => pixel("track", "InitiateCheckout"));
+    document.querySelectorAll("[data-checkout]").forEach(link => link.addEventListener("click", () => pixel("track", "InitiateCheckout")));
   }
+
 </script>
 <noscript><img width="1" height="1" hidden alt="" src="https://www.facebook.com/tr?id=2149847235657959&amp;ev=PageView&amp;noscript=1"></noscript>
 </body>
