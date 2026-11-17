@@ -110,7 +110,7 @@
 <details><summary>¿El material de aire acondicionado está en el básico?</summary><p>No. Aire acondicionado forma parte del plan completo y es su material destacado.</p></details>
 <details><summary>¿Son videos o materiales escritos?</summary><p>Son materiales digitales en PDF para leer y consultar. Esta oferta no incluye clases en video.</p></details>
 <details><summary>¿Puedo leerlos en el celular?</summary><p>Sí, con un lector de PDF compatible. También puedes abrirlos en una tablet o una computadora.</p></details>
-<details><summary>¿En qué idioma están los archivos?</summary><p>Los originales y las vistas previas están en portugués. La adaptación de los PDF al español está en preparación; la compra aún no está habilitada.</p></details>
+<details><summary>¿En qué idioma están los archivos?</summary><p>Los originales y las vistas previas están en portugués. Los PDF disponibles están en portugués.</p></details>
 <details><summary>¿Es una certificación o sustituye la capacitación práctica?</summary><p>No. Es material educativo de estudio y consulta. Las intervenciones eléctricas y con refrigerantes requieren capacitación adecuada, medidas de seguridad e instrucciones del fabricante.</p></details>
 </div></section>
 <section class="closing center"><div class="wrap"><h2>Aire acondicionado y más.<br><span class="accent">Reúne tu biblioteca técnica.</span></h2><a class="button" href="#planes">QUIERO VER EL PLAN COMPLETO →</a><p>7 PDF · 312 páginas · <strong data-price="complete">US$ 6.90</strong></p></div></section>
@@ -123,9 +123,9 @@ const offer = {
   currency: "USD",
   locale: "es-MX",
   basic: { amount: 4.90, checkoutUrl: "" },
-  complete: { amount: 6.90, checkoutUrl: "" },
+  complete: { amount: 6.90, checkoutUrl: "https://pay.hotmart.com/J108540177D?checkoutMode=10" },
   launchEndsAt: "",
-  metaPixelId: "2149847235657959",
+  metaPixelId: "1489240479750143",
   // Actual page renders from the supplied PDFs; the source language is disclosed.
   samples: [
     {
@@ -483,17 +483,40 @@ if (/^\d+$/.test(offer.metaPixelId)) {
     script.async = true; script.src = "https://connect.facebook.net/en_US/fbevents.js";
     document.head.append(script);
     pixel("init", offer.metaPixelId);
-    pixel("track", "PageView");
+
   }
-  document.querySelectorAll("[data-checkout]").forEach(link => link.addEventListener("click", () => {
-    if (!link.hidden && link.href) pixel("track", "InitiateCheckout", {
+  function trackOfferEvent(name, plan) {
+    const id = globalThis.crypto?.randomUUID?.();
+    const properties = plan ? {
       currency: offer.currency,
-      value: offer[link.dataset.checkout].amount,
-      content_name: link.dataset.checkout === "complete" ? "Biblioteca completa" : "Electrodomésticos"
-    });
-  }));
+      value: offer[plan].amount,
+      content_name: plan === "complete" ? "Biblioteca completa" : "Electrodomésticos"
+    } : {};
+    if (!id) {
+      pixel("trackSingle", offer.metaPixelId, name, properties);
+      return;
+    }
+    pixel("trackSingle", offer.metaPixelId, name, properties, { eventID: id });
+
+    const clickId = new URLSearchParams(location.search).get("fbclid");
+    const body = JSON.stringify({ name, id, plan, clickId: clickId?.slice(0, 300) });
+    const accepted = navigator.sendBeacon?.("/api/meta-event", new Blob([body], {type: "application/json"}));
+    if (!accepted) fetch("/api/meta-event", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true
+    }).catch(() => {});
+  }
+
+  trackOfferEvent("PageView");
+  document.querySelectorAll("[data-checkout]").forEach(link => {
+    const trackClick = event => {
+      if (event.type === "auxclick" && event.button !== 1) return;
+      if (!link.hidden && link.hasAttribute("href")) trackOfferEvent("InitiateCheckout", link.dataset.checkout);
+    };
+    link.addEventListener("click", trackClick);
+    link.addEventListener("auxclick", trackClick);
+  });
 }
 </script>
-<noscript><p class="wrap micro">Activa JavaScript para ampliar las muestras y consultar la disponibilidad de compra.</p><img width="1" height="1" hidden alt="" src="https://www.facebook.com/tr?id=2149847235657959&amp;ev=PageView&amp;noscript=1"></noscript>
+<noscript><p class="wrap micro">Activa JavaScript para ampliar las muestras y consultar la disponibilidad de compra.</p><img width="1" height="1" hidden alt="" src="https://www.facebook.com/tr?id=1489240479750143&amp;ev=PageView&amp;noscript=1"></noscript>
 </body>
 </html>
