@@ -29,6 +29,7 @@
 .showcase{max-width:1000px;margin:34px auto 0;background:#fff;border:1px solid #d2e2ec;border-radius:18px;overflow:hidden;box-shadow:0 18px 45px #123e5410}
 .showcase-track{--card:min(62%, 340px);--gap:22px;display:flex;position:relative;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;outline-offset:-4px;background:linear-gradient(#e7f3fa,#f6fafc);padding:24px 0}
 .showcase-track::-webkit-scrollbar{display:none}
+.showcase-track.is-playing{scroll-snap-type:none}
 .showcase-track::before,.showcase-track::after{content:"";flex:0 0 calc((100% - var(--card)) / 2 - var(--gap))}
 .showcase-slide{flex:0 0 var(--card);min-width:0;scroll-snap-align:center;display:flex;align-items:center}
 .showcase-slide .sample-button{display:block;width:100%;padding:0;overflow:hidden;border:1px solid #d2e2ec;border-radius:9px;background:#fff;color:var(--ink);cursor:pointer;box-shadow:0 8px 24px #153e5320;transform:scale(.86);opacity:.68;transition:transform .52s ease, opacity .52s ease}
@@ -239,17 +240,46 @@ let activeSample = 0;
 let activePosition = loopBuffer;
 let autoPlay = !reduceMotion.matches;
 let showcaseVisible = false;
-let sampleTimer;
+const carouselSpeed = 64;
+let animationFrame = null;
+let previousFrame;
+let continuousOffset;
+let firstOffset;
+let cardStride;
 let scrollTimer;
 let dialogTrigger;
 
 function updatePlayback() {
-  clearTimeout(sampleTimer);
   pauseButton.textContent = autoPlay ? "Pausar" : "Reproducir";
   pauseButton.setAttribute("aria-pressed", String(!autoPlay));
-  if (autoPlay && showcaseVisible && !document.hidden && !dialog.open && sampleCount > 1) {
-    sampleTimer = setTimeout(() => moveSample(1), 4800);
+  const shouldPlay = autoPlay && showcaseVisible && !document.hidden && !dialog.open && sampleCount > 1;
+  if (shouldPlay && animationFrame === null) {
+    firstOffset = centerPosition(loopBuffer);
+    cardStride = centerPosition(loopBuffer + 1) - firstOffset;
+    continuousOffset = gallery.scrollLeft;
+    previousFrame = undefined;
+    clearTimeout(scrollTimer);
+    gallery.classList.add("is-playing");
+    animationFrame = requestAnimationFrame(advanceCarousel);
+  } else if (!shouldPlay && animationFrame !== null) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+    gallery.classList.remove("is-playing");
   }
+}
+
+function advanceCarousel(timestamp) {
+  if (previousFrame !== undefined) {
+    continuousOffset += Math.min(timestamp - previousFrame, 40) * carouselSpeed / 1000;
+    const loopWidth = cardStride * sampleCount;
+    if (continuousOffset >= firstOffset + loopWidth) continuousOffset -= loopWidth;
+    gallery.scrollTo({left: continuousOffset, behavior: "instant"});
+
+    const position = loopBuffer + Math.round((continuousOffset - firstOffset) / cardStride);
+    if (slides[position] && activePosition !== position) syncActive(position);
+  }
+  previousFrame = timestamp;
+  animationFrame = requestAnimationFrame(advanceCarousel);
 }
 
 function centerPosition(position) {
@@ -286,7 +316,10 @@ function scrollToSample(position) {
 
 function moveSample(direction, manual = false) {
   if (sampleCount < 2) return;
-  if (manual) autoPlay = false;
+  if (manual) {
+    autoPlay = false;
+    updatePlayback();
+  }
   const normalPosition = activeSample + loopBuffer;
   if (activePosition !== normalPosition) {
     gallery.scrollTo({left: centerPosition(normalPosition), behavior: "instant"});
@@ -330,6 +363,7 @@ function createSample(position) {
 
   button.addEventListener("click", () => {
     autoPlay = false;
+    updatePlayback();
     if (index !== activeSample) {
       scrollToSample(position + loopBuffer);
       syncActive(position + loopBuffer, true);
@@ -355,6 +389,7 @@ if (sampleCount) {
     dot.setAttribute("aria-label","Ver " + sample.title);
     dot.addEventListener("click", () => {
       autoPlay = false;
+      updatePlayback();
       scrollToSample(index + loopBuffer);
       syncActive(index + loopBuffer, true);
     });
@@ -376,6 +411,7 @@ gallery.addEventListener("keydown", event => {
   moveSample(event.key === "ArrowRight" ? 1 : -1, true);
 });
 gallery.addEventListener("scroll", () => {
+  if (animationFrame !== null || !sampleCount) return;
   clearTimeout(scrollTimer);
   scrollTimer = setTimeout(() => {
     const closest = slides.reduce((nearest, _, i) =>
@@ -389,15 +425,21 @@ gallery.addEventListener("scroll", () => {
   }, 155);
 },{passive:true});
 window.addEventListener("resize", () => {
-  if (sampleCount) gallery.scrollTo({left: centerPosition(activePosition), behavior:"instant"});
+  if (!sampleCount) return;
+  gallery.scrollTo({left: centerPosition(activePosition), behavior:"instant"});
+  if (animationFrame !== null) {
+    firstOffset = centerPosition(loopBuffer);
+    cardStride = centerPosition(loopBuffer + 1) - firstOffset;
+    continuousOffset = gallery.scrollLeft;
+  }
 },{passive:true});
 document.addEventListener("visibilitychange",updatePlayback);
 reduceMotion.addEventListener("change", () => { if (reduceMotion.matches) autoPlay = false; updatePlayback(); });
 if ("IntersectionObserver" in window) {
   const showcaseObserver = new IntersectionObserver(([entry]) => {
-    showcaseVisible = entry.intersectionRatio >= .45;
+    showcaseVisible = entry.intersectionRatio >= .2;
     updatePlayback();
-  }, {threshold:.45});
+  }, {threshold:.2});
   showcaseObserver.observe(gallery);
 }
 document.getElementById("close-sample").addEventListener("click",()=>dialog.close());
