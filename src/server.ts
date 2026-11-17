@@ -54,7 +54,7 @@ async function sendMetaEvent(request: Request, url: URL, env: unknown): Promise<
     typeof payload.id !== "string" || !/^[a-f0-9-]{36}$/i.test(payload.id)) {
     return new Response(null, { status: 400 });
   }
-  if (payload.name === "InitiateCheckout" && payload.plan !== "complete") {
+  if (payload.name === "InitiateCheckout" && payload.plan !== "complete" && payload.plan !== "basic") {
     return new Response(null, { status: 400 });
   }
 
@@ -82,7 +82,11 @@ async function sendMetaEvent(request: Request, url: URL, env: unknown): Promise<
     action_source: "website",
     user_data: userData,
     ...(payload.name === "InitiateCheckout" && {
-      custom_data: { currency: "USD", value: 6.9, content_name: "Biblioteca completa" },
+      custom_data: {
+        currency: "USD",
+        value: payload.plan === "basic" ? 4.9 : 6.9,
+        content_name: payload.plan === "basic" ? "Electrodomésticos" : "Biblioteca completa",
+      },
     }),
   };
 
