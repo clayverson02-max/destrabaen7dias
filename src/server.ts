@@ -84,7 +84,7 @@ async function sendMetaEvent(request: Request, url: URL, env: unknown): Promise<
     ...(payload.name === "InitiateCheckout" && {
       custom_data: {
         currency: "USD",
-        value: payload.plan === "basic" ? 4.9 : 6.9,
+        value: payload.plan === "basic" ? 4.9 : 5.5,
         content_name: payload.plan === "basic" ? "Electrodomésticos" : "Biblioteca completa",
       },
     }),
